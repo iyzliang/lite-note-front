@@ -1,18 +1,36 @@
 {
   "compilerOptions": {
+    /* 语言和环境 */
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
+    "jsx": "react-jsx",
+    /* 模块 */
     "module": "esnext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "allowJs": true,
+    /* 类型检查 */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
+    "exactOptionalPropertyTypes": false,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    /* 互操作性约束 */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    /* 输出 */
+    "noEmit": true,
+    "skipLibCheck": true,
     "incremental": true,
+    /* 高级选项 */
     "plugins": [
       {
         "name": "next"
@@ -30,5 +48,5 @@
     ".next/dev/types/**/*.ts",
     "**/*.mts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next", "out", "build"]
 }

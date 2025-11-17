@@ -1,26 +1,343 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* 自定义主题变量 */
+@theme {
+  /* 颜色系统 */
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+  --color-primary-950: #082f49;
+
+  --color-secondary-50: #f8fafc;
+  --color-secondary-100: #f1f5f9;
+  --color-secondary-200: #e2e8f0;
+  --color-secondary-300: #cbd5e1;
+  --color-secondary-400: #94a3b8;
+  --color-secondary-500: #64748b;
+  --color-secondary-600: #475569;
+  --color-secondary-700: #334155;
+  --color-secondary-800: #1e293b;
+  --color-secondary-900: #0f172a;
+  --color-secondary-950: #020617;
+
+  --color-accent-50: #fdf4ff;
+  --color-accent-100: #fae8ff;
+  --color-accent-200: #f5d0fe;
+  --color-accent-300: #f0abfc;
+  --color-accent-400: #e879f9;
+  --color-accent-500: #d946ef;
+  --color-accent-600: #c026d3;
+  --color-accent-700: #a21caf;
+  --color-accent-800: #86198f;
+  --color-accent-900: #701a75;
+  --color-accent-950: #4a044e;
+
+  /* 字体家族 */
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* 字体大小 */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+
+  /* 行高 */
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+
+  /* 间距 */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* 圆角 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* 动画时长 */
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+
+  /* 过渡效果 */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* 基础样式重置 */
+@layer base {
+  * {
+    @apply border-secondary-200;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-white text-secondary-900 antialiased;
+    @apply font-sans text-base leading-normal;
+  }
+
+  /* 标题样式 */
+  h1 {
+    @apply text-4xl font-bold tracking-tight text-secondary-900;
+  }
+
+  h2 {
+    @apply text-3xl font-bold tracking-tight text-secondary-900;
+  }
+
+  h3 {
+    @apply text-2xl font-semibold tracking-tight text-secondary-900;
+  }
+
+  h4 {
+    @apply text-xl font-semibold tracking-tight text-secondary-900;
+  }
+
+  h5 {
+    @apply text-lg font-semibold tracking-tight text-secondary-900;
+  }
+
+  h6 {
+    @apply text-base font-semibold tracking-tight text-secondary-900;
+  }
+
+  /* 链接样式 */
+  a {
+    @apply text-primary-600 transition-colors duration-200;
+    @apply hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  /* 段落样式 */
+  p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  /* 列表样式 */
+  ul, ol {
+    @apply mb-4 ml-6;
+  }
+
+  ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  /* 代码样式 */
+  code {
+    @apply rounded bg-secondary-100 px-1.5 py-0.5 font-mono text-sm text-secondary-800;
+  }
+
+  pre {
+    @apply mb-4 overflow-x-auto rounded-lg bg-secondary-900 p-4;
+  }
+
+  pre code {
+    @apply bg-transparent p-0 text-secondary-100;
+  }
+
+  /* 引用样式 */
+  blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic text-secondary-700;
+  }
+
+  /* 表格样式 */
+  table {
+    @apply w-full border-collapse;
+  }
+
+  th {
+    @apply bg-secondary-50 px-4 py-2 text-left font-semibold text-secondary-900;
+  }
+
+  td {
+    @apply border-t border-secondary-200 px-4 py-2;
+  }
+
+  /* 表单元素 */
+  input, textarea, select {
+    @apply rounded-md border border-secondary-300 px-3 py-2 transition-colors;
+    @apply focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  button {
+    @apply cursor-pointer rounded-md transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  /* 图片样式 */
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  /* 分隔线 */
+  hr {
+    @apply my-8 border-secondary-200;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 自定义组件样式 */
+@layer components {
+  /* 按钮样式 */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 font-medium rounded-md transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500;
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+  }
+
+  .btn-ghost {
+    @apply text-secondary-700 hover:bg-secondary-100 focus:ring-secondary-500;
+  }
+
+  .btn-sm {
+    @apply px-3 py-1.5 text-sm;
+  }
+
+  .btn-lg {
+    @apply px-6 py-3 text-lg;
+  }
+
+  /* 卡片样式 */
+  .card {
+    @apply rounded-lg bg-white p-6 shadow-md transition-shadow duration-200;
+    @apply hover:shadow-lg;
+  }
+
+  .card-bordered {
+    @apply border border-secondary-200;
+  }
+
+  /* 徽章样式 */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-100 text-primary-800;
+  }
+
+  .badge-secondary {
+    @apply bg-secondary-100 text-secondary-800;
+  }
+
+  .badge-accent {
+    @apply bg-accent-100 text-accent-800;
+  }
+
+  /* 容器样式 */
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* 输入框组 */
+  .input-group {
+    @apply flex flex-col gap-2;
+  }
+
+  .input-label {
+    @apply text-sm font-medium text-secondary-700;
+  }
+
+  .input-error {
+    @apply text-sm text-red-600;
+  }
+}
+
+/* 工具类 */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 暗色模式支持 */
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-secondary-950 text-secondary-100;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-secondary-50;
+  }
+
+  a {
+    @apply text-primary-400 hover:text-primary-300;
+  }
+
+  code {
+    @apply bg-secondary-800 text-secondary-200;
+  }
+
+  .card {
+    @apply bg-secondary-900 shadow-xl;
+  }
 }
