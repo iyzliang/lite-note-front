@@ -9,11 +9,7 @@ export interface SimpleTag {
 /**
  * 热门标签参数
  */
-export interface GetPopularTagsParams {
-  limit: number;
+export interface GetTagsParams {
+  limit?: number;
+  isPopular?: boolean;
 }
-
-/**
- * 标签响应
- */
-export type TagListResponse = SimpleTag[];
