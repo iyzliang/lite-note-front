@@ -12,6 +12,7 @@ import { notFound } from 'next/navigation';
 // 导入代码高亮样式
 import 'highlight.js/styles/github-dark.css';
 import ArticleActions from '@/components/ArticleActions';
+import ArticleViewTracker from '@/components/ArticleViewTracker';
 
 interface ArticlePageProps {
   params: Promise<{
@@ -39,7 +40,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   // 为标题添加 ID
   let headingIndex = 0;
   const addHeadingIds = (content: string) => {
-    return content.replace(/^(#{1,3})\s+(.+)$/gm, (match, hashes, text) => {
+    return content.replace(/^(#{1,3})\s+(.+)$/gm, (_, hashes, text) => {
       const id = `heading-${headingIndex++}`;
       return `${hashes} <span id="${id}">${text}</span>`;
     });
@@ -50,6 +51,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   return (
     <>
       <ReadingProgress />
+      <ArticleViewTracker articleId={article.id} />
       <ArticleActions
         articleId={article.id}
         initialLikeCount={article.likeCount}

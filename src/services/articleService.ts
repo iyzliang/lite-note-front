@@ -2,7 +2,7 @@ import type {
   PaginationResponse,
   ArticleListItem,
   GetArticlesParams,
-  ArticleDetail
+  ArticleDetail,
 } from '@/types';
 import apiClient from './api';
 
@@ -36,5 +36,14 @@ export const articleService = {
    */
   unlikeArticle: async (id: string) => {
     return await apiClient.post(`/front/articles/${id}/unlike`);
+  },
+
+  /**
+   * 浏览时间上报
+   */
+  postViewLog: async (id: string, duration: number) => {
+    return await apiClient.post(`/front/articles/${id}/view-log`, {
+      durationSeconds: duration,
+    });
   },
 };
