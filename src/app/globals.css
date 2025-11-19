@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@import '../styles/markdown.css';
 
 /* 自定义主题变量 */
 @theme {
@@ -40,9 +42,13 @@
   --color-accent-950: #4a044e;
 
   /* 字体家族 */
-  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-serif: ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
 
   /* 字体大小 */
   --font-size-xs: 0.75rem;
@@ -83,8 +89,10 @@
   /* 阴影 */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
   /* 动画时长 */
@@ -107,7 +115,7 @@
 /* 基础样式重置 */
 @layer base {
   * {
-    @apply border-secondary-200;
+    @apply border-secondary-200 dark:border-secondary-800;
   }
 
   html {
@@ -115,39 +123,41 @@
   }
 
   body {
-    @apply bg-white text-secondary-900 antialiased;
-    @apply font-sans text-base leading-normal;
+    @apply from-secondary-50 to-primary-50/30 bg-gradient-to-br via-white;
+    @apply dark:from-secondary-950 dark:via-secondary-900 dark:to-primary-950/30;
+    @apply text-secondary-900 dark:text-secondary-100;
+    @apply antialiased transition-colors duration-300;
   }
 
   /* 标题样式 */
   h1 {
-    @apply text-4xl font-bold tracking-tight text-secondary-900;
+    @apply text-secondary-900 text-4xl font-bold tracking-tight;
   }
 
   h2 {
-    @apply text-3xl font-bold tracking-tight text-secondary-900;
+    @apply text-secondary-900 text-3xl font-bold tracking-tight;
   }
 
   h3 {
-    @apply text-2xl font-semibold tracking-tight text-secondary-900;
+    @apply text-secondary-900 text-2xl font-semibold tracking-tight;
   }
 
   h4 {
-    @apply text-xl font-semibold tracking-tight text-secondary-900;
+    @apply text-secondary-900 text-xl font-semibold tracking-tight;
   }
 
   h5 {
-    @apply text-lg font-semibold tracking-tight text-secondary-900;
+    @apply text-secondary-900 text-lg font-semibold tracking-tight;
   }
 
   h6 {
-    @apply text-base font-semibold tracking-tight text-secondary-900;
+    @apply text-secondary-900 text-base font-semibold tracking-tight;
   }
 
   /* 链接样式 */
   a {
     @apply text-primary-600 transition-colors duration-200;
-    @apply hover:text-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply hover:text-primary-700 focus:ring-primary-500 focus:ring-2 focus:ring-offset-2 focus:outline-none;
   }
 
   /* 段落样式 */
@@ -156,7 +166,8 @@
   }
 
   /* 列表样式 */
-  ul, ol {
+  ul,
+  ol {
     @apply mb-4 ml-6;
   }
 
@@ -174,20 +185,20 @@
 
   /* 代码样式 */
   code {
-    @apply rounded bg-secondary-100 px-1.5 py-0.5 font-mono text-sm text-secondary-800;
+    @apply bg-secondary-100 text-secondary-800 rounded px-1.5 py-0.5 font-mono text-sm;
   }
 
   pre {
-    @apply mb-4 overflow-x-auto rounded-lg bg-secondary-900 p-4;
+    @apply bg-secondary-900 mb-4 overflow-x-auto rounded-lg p-4;
   }
 
   pre code {
-    @apply bg-transparent p-0 text-secondary-100;
+    @apply text-secondary-100 bg-transparent p-0;
   }
 
   /* 引用样式 */
   blockquote {
-    @apply border-l-4 border-primary-500 pl-4 italic text-secondary-700;
+    @apply border-primary-500 text-secondary-700 border-l-4 pl-4 italic;
   }
 
   /* 表格样式 */
@@ -196,32 +207,34 @@
   }
 
   th {
-    @apply bg-secondary-50 px-4 py-2 text-left font-semibold text-secondary-900;
+    @apply bg-secondary-50 text-secondary-900 px-4 py-2 text-left font-semibold;
   }
 
   td {
-    @apply border-t border-secondary-200 px-4 py-2;
+    @apply border-secondary-200 border-t px-4 py-2;
   }
 
   /* 表单元素 */
-  input, textarea, select {
-    @apply rounded-md border border-secondary-300 px-3 py-2 transition-colors;
-    @apply focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  input,
+  textarea,
+  select {
+    @apply border-secondary-300 rounded-md border px-3 py-2 transition-colors;
+    @apply focus:border-primary-500 focus:ring-primary-500 focus:ring-2 focus:ring-offset-2 focus:outline-none;
   }
 
   button {
     @apply cursor-pointer rounded-md transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    @apply focus:ring-primary-500 focus:ring-2 focus:ring-offset-2 focus:outline-none;
   }
 
   /* 图片样式 */
   img {
-    @apply max-w-full h-auto;
+    @apply h-auto max-w-full;
   }
 
   /* 分隔线 */
   hr {
-    @apply my-8 border-secondary-200;
+    @apply border-secondary-200 my-8;
   }
 }
 
@@ -229,20 +242,20 @@
 @layer components {
   /* 按钮样式 */
   .btn {
-    @apply inline-flex items-center justify-center px-4 py-2 font-medium rounded-md transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center rounded-md px-4 py-2 font-medium transition-all duration-200;
+    @apply focus:ring-2 focus:ring-offset-2 focus:outline-none;
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+    @apply bg-primary-600 hover:bg-primary-700 focus:ring-primary-500 text-white;
   }
 
   .btn-secondary {
-    @apply bg-secondary-600 text-white hover:bg-secondary-700 focus:ring-secondary-500;
+    @apply bg-secondary-600 hover:bg-secondary-700 focus:ring-secondary-500 text-white;
   }
 
   .btn-outline {
-    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500;
+    @apply border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-500 border-2;
   }
 
   .btn-ghost {
@@ -264,7 +277,7 @@
   }
 
   .card-bordered {
-    @apply border border-secondary-200;
+    @apply border-secondary-200 border;
   }
 
   /* 徽章样式 */
@@ -295,11 +308,35 @@
   }
 
   .input-label {
-    @apply text-sm font-medium text-secondary-700;
+    @apply text-secondary-700 text-sm font-medium;
   }
 
   .input-error {
     @apply text-sm text-red-600;
+  }
+
+  /* 玻璃态效果 */
+  .glass {
+    @apply bg-white/80 backdrop-blur-xl;
+    @apply dark:bg-secondary-900/80;
+    @apply border-secondary-200/50 dark:border-secondary-800/50 border;
+  }
+
+  .dark .glass {
+    background: rgba(17, 24, 39, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 卡片悬浮效果 */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+    @apply hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  /* 渐变文字 */
+  .gradient-text {
+    @apply from-primary-600 to-accent-600 bg-gradient-to-r;
+    @apply bg-clip-text text-transparent;
   }
 }
 
@@ -317,6 +354,10 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  .fade-in-right {
+    animation: fadeInRight 0.6s ease-out;
+  }
 }
 
 /* 暗色模式支持 */
@@ -325,7 +366,12 @@
     @apply bg-secondary-950 text-secondary-100;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply text-secondary-50;
   }
 
@@ -339,5 +385,71 @@
 
   .card {
     @apply bg-secondary-900 shadow-xl;
+  }
+}
+
+/* 暗色模式变量 */
+:root {
+  --background: 255 255 255;
+  --foreground: 15 23 42;
+  --card: 255 255 255;
+  --card-foreground: 15 23 42;
+}
+
+.dark {
+  --background: 2 6 23;
+  --foreground: 248 250 252;
+  --card: 15 23 42;
+  --card-foreground: 248 250 252;
+}
+.dark body {
+  @apply bg-secondary-950 text-secondary-100;
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  @apply text-secondary-50;
+}
+
+.dark a {
+  @apply text-primary-400 hover:text-primary-300;
+}
+
+.dark code {
+  @apply bg-secondary-800 text-secondary-200;
+}
+
+.dark .card {
+  @apply bg-secondary-900 shadow-xl;
+}
+
+.dark input,
+.dark textarea,
+.dark select {
+  @apply border-secondary-700 bg-secondary-800 text-secondary-100;
+  @apply focus:border-primary-500;
+}
+
+.dark th {
+  @apply bg-secondary-800 text-secondary-100;
+}
+
+.dark td {
+  @apply border-secondary-800;
+}
+
+/* 动画定义 */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
